@@ -2,11 +2,11 @@
 PROJECT REPORT
 ------------------------------------------------------------ 
 
-Course Code: CSEG1032
+Course Code: CSEG1041
 Course Title: Programming in C
 Project Title: Restaurant Management System
-Student Name: Satvik Arora
-Roll Number: 590028424
+Student Name: Navya Tomar
+Roll Number: 590028390
 Semester: 1
 
 1. Abstract
