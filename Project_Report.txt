@@ -1,0 +1,215 @@
+------------------------------------------------------------
+PROJECT REPORT
+------------------------------------------------------------ 
+
+Course Code: CSEG1032
+Course Title: Programming in C
+Project Title: Restaurant Management System
+Student Name: Satvik Arora
+Roll Number: 590028424
+Semester: 1
+
+1. Abstract
+-----------------------------------------------------------------------
+This project presents a simple Restaurant Billing and Menu Management
+System developed using the C programming language. The system reads menu
+items from a text file, allows users to select products by entering
+their IDs, stores selected items in a cart, and generates a final bill
+including GST. The project emphasizes modular C programming through the
+use of multiple source files, header files, structures, and file
+handling. The system is designed to be simple, efficient, and easy to
+use, providing practical exposure to real-world problem solving using C.
+
+=======================================================================
+
+2. Objective
+-----------------------------------------------------------------------
+The objective of this project is to design and implement a simple,
+modular, and user-friendly Restaurant Billing and Menu Management System
+using the C programming language. The system should automate menu
+loading, item selection, order storage, bill calculation, and invoice
+generation. The aim is to replace manual billing with a faster, more
+accurate, and systematic approach while reinforcing key programming
+concepts such as file handling, structures, arrays, functions, and
+multi-file program organization.
+
+
+3. Introduction & Problem Statement  
+-----------------------------------------------------------------------
+In many small restaurants or fast-food outlets, billing is done manually, which is error-prone and time-consuming.  
+Our goal was to build a simple, console-based billing system in C that automates billing, ensures accurate calculation, and produces a neatly formatted invoice.
+
+The system shall:  
+  • Read menu products (ID, name, price) from a file (menu.txt)  
+  • Display the menu to the user  
+  • Allow selection of products by ID and specify quantity  
+  • Maintain a cart (order) of selected products  
+  • Calculate subtotal, apply GST (5%), and compute final amount  
+  • Display a well-formatted invoice listing products, quantities, rates, subtotal, tax, and final payable amount  
+
+This project also serves as a practice in modular C programming: using multiple source and header files, file handling, structures, arrays, and user interaction.
+
+=======================================================================
+
+4. Flowchart 
+----------------------------------------
+                START
+--------------------------------------------
+Loadmenu() from menu.txt
+--------------------------------------------
+Is size_menu == 0?
+    ├── Yes → Print "Failed to load menu" → EXIT program
+    └── No  → Continue
+--------------------------------------------
+Initialize order
+--------------------------------------------
+print_menu()
+--------------------------------------------
+LOOP: Ask user to enter Product ID
+--------------------------------------------
+Is ID == 0 ?
+    ├── Yes → Break the loop
+    └── No  → Continue
+--------------------------------------------
+find_product_index()
+--------------------------------------------
+Is index == -1 ?
+    ├── Yes → Print "Invalid ID" → Continue loop
+    └── No  → Product exists
+--------------------------------------------
+Ask user to enter quantity
+--------------------------------------------
+Is quantity <= 0 ?
+    ├── Yes → Print "Invalid quantity" → Continue loop
+    └── No  → Continue
+--------------------------------------------
+add_product(&order, ID, quantity)
+→ Product added to order
+--------------------------------------------
+Loop continues until user enters 0
+--------------------------------------------
+print_bill(&order, menu)
+--------------------------------------------
+                    END
+--------------------------------------------
+========================================
+
+5. Algorithms  
+----------------------------
+**Load Menu**  
+1. Open “menu.txt” in read mode.  
+2. For each line, read: product ID (int), name (string), price (float).  
+3. Store in array of structures.  
+4. On EOF or error, close file and return count of products.  
+
+**Add products to Cart**  
+1. Prompt user for product ID.  
+2. If ID = 0 → finish selection.  
+3. Else search menu array for matching ID.  
+4. If found → prompt for quantity → store ID and quantity in order/cart structure.  
+5. Repeat.  
+
+**Print Bill**  
+1. For each entry in cart: find menu product by ID.  
+2. Compute amount = price × quantity; accumulate subtotal.  
+3. After all products, compute GST = 5% of subtotal.  
+4. Final amount = subtotal + GST.  
+5. Print a formatted bill listing: product name, qty, rate, amount; then subtotal, GST, final amount.
+
+=======================================================================
+
+6. Implementation Details  
+-----------------------------------------------------------------------
+
+**KEY FEATURES USED** 
+- **Structures** to represent product and order details.
+- **File Handling** functions (`fopen`,`fscanf`,`fclose`) to store and retrieve data.
+- **User-Defined Functions** for modularity, easier readability and clarity.
+ 
+-----------------------
+```c 
+typedef struct {  
+    int id;        
+    char name[50];  
+    float price;      
+} Product;  
+
+typedef struct {
+    int productId[MAX_ORDER_PRODUCTS]; 
+    int qty[MAX_ORDER_PRODUCTS];     
+    int count;                   
+} Order; 
+
+FILE *fptr = fopen(filename, "r");
+    if (!fptr) {
+        printf("Error in opening the file %s\n", filename);
+        return 0;
+    }
+ int  count= 0;
+    while (fscanf(fptr, "%d %s %f",        
+                  &menu[count].id,                      
+                  menu[count].name,
+                  &menu[count].price) == 3) { 
+        count++;
+    }
+    fclose(fptr);
+
+7.Problems Faced
+-----------------------------------------------------------------------
+-Understanding multi-file compilation was challenging. Managing separate
+ .c and .h files and ensuring proper inclusion required repeated debugging.
+
+-File handling needed careful attention, especially ensuring that menu.txt followed
+ the correct format. Any spacing or formatting mistake caused incorrect menu loading.
+
+-Product names in the menu had to be single-word due to fscanf("%s").
+ Handling multi-word items required a different approach, which added
+ limitations during development.
+
+-Formatting the final bill neatly was challenging at first, since
+ alignment required proper use of printf() format specifiers.
+=======================================================================
+
+8.Future Scope
+-----------------------------------------------------------------------
+-Let users modify or delete items already added to the cart before generating the bill.
+
+-Store Bills in a file for record-keeping and daily sales tracking.
+
+-Admin Mode for Menu Editing.Password-protected admin access to add, delete, or update menu items directly.
+
+-Export Bill to File Formats.Generate receipts in text, CSV, or PDF format.
+
+-Database Integration (Long-Term).Replace text files with SQLite or MySQL for scalable storage.
+=======================================================================
+
+9. References
+-----------------------------------------------------------------------
+-Course Lecture Notes & Class Material. Guided the structure of the project and requirements like multi-file programming
+
+-E.Balagurusamy – Programming in ANSI C
+
+-Instructor-Provided Guidelines-Used to standardize folder structure, coding style, and project formatting.
+
+-Online C Programming Resources (GeeksforGeeks, Tutorialspoint)
+ Helped in understanding examples of file handling, formatted output, and modular C program design.
+=======================================================================
+
+10. Conclusion
+-----------------------------------------------------------------------
+The Restaurant Billing and Menu Management System successfully fulfills
+the objective of automating the billing process using the C programming
+language. It demonstrates the use of structures, file handling, modular
+functions, and multi-file program organization in an efficient and
+practical way.
+
+The system accurately loads menu items, accepts user input, validates
+product IDs, calculates totals and GST, and generates a clear and
+readable invoice, proving its usefulness for small restaurant setups.
+
+The project also strengthened understanding of core C concepts and
+helped build problem-solving, debugging, and modular design skills.
+Overall, the implementation meets all requirements and provides a strong
+foundation for further enhancements.
+=======================================================================
+
