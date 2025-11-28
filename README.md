@@ -10,5 +10,11 @@ Loads menu items from an external file (menu.txt) Displays menu in a formatted l
 Compile the Code Use GCC or any C compiler: gcc src/main.c src/menu.c src/order.c src/util.c -I include -o main
 
 Run the Executable ./main
-
 Ensure menu.txt Exists Example format:
+1 PIZZA 120
+2 FRIES 75
+3 BURGER 80
+4 COKE 40
+5 PASTA 140
+6 DABELI 35
+7 BIRYANI 110
