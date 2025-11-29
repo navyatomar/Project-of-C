@@ -10,6 +10,7 @@ Loads menu items from an external file (menu.txt) Displays menu in a formatted l
 Compile the Code Use GCC or any C compiler: gcc src/main.c src/menu.c src/order.c src/util.c -I include -o main
 
 Run the Executable ./main
+
 1 PIZZA 120
 2 FRIES 75
 3 BURGER 80
@@ -17,3 +18,15 @@ Run the Executable ./main
 5 PASTA 140
 6 DABELI 35
 7 BIRYANI 110
+📄 Sample Output (Invoice)
+
+============= ORDER SUMMARY =============
+Product         Qty     Price    Subtotal
+------------------------------------------
+PIZZA           1       120.00   120.00
+BURGER          1       80.00    80.00
+------------------------------------------
+Total:                           200.00
+GST (5%):                         10.00
+Final Amount:                    210.00
+==========================================
